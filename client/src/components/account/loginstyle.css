@@ -1,0 +1,9 @@
+.navbar--logo{
+    height:80px ;
+    width:250px  ;
+    display:flex ;
+    margin:auto ;
+    padding:50px 0 0 ;
+    mix-blend-mode:multiply; 
+    background-color: white;
+}
