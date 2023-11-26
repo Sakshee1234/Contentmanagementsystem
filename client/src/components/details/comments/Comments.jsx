@@ -4,7 +4,7 @@ import { Box, TextareaAutosize, Button, styled } from '@mui/material';
 import { DataContext } from '../../../context/DataProvider';
 
 import { API } from '../../../service/api';
-
+import { useNavigate,useLocation } from 'react-router-dom';
 //components
 import Comment from './Comment';
 
@@ -69,11 +69,13 @@ const Comments = ({ post }) => {
             comments: e.target.value
         });
     }
-
+    const navigate=useNavigate();
+    const location=useLocation();
     const addComment = async() => {
         await API.newComment(comment);
         setComment(initialValue)
         setToggle(prev => !prev);
+        navigate(location.pathname);
     }
     
     return (

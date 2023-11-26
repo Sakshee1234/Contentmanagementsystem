@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Typography, Box, styled } from "@mui/material";
 import { Delete } from '@mui/icons-material';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams,useLocation } from 'react-router-dom';
 import { API } from '../../../service/api';
 import { DataContext } from "../../../context/DataProvider";
 
@@ -34,12 +34,16 @@ const DeleteIcon = styled(Delete)`
 const Comment = ({ comment, setToggle }) => {
 
     const { account } = useContext(DataContext)
-    
+    const navigate=useNavigate();
+    const location=useLocation();
     const removeComment = async (id) => {
         fetch(`http://localhost:8000/deleteComment?id=${id}`,{
             method:"DELETE",
             credentials:'include',
+        }).then(res=>res.json()).then(data=>{
+            navigate(location.pathname);
         })
+        
     }
 
     return (
